@@ -1,18 +1,22 @@
 const User = require("../models/userModel");
 
-async function usersServices({ car, income, gender, phone_price }) {
+async function usersServices({ car, income, gender, phone_price, last_name }) {
+    const lastName = new RegExp(last_name)
   const users = await User.aggregate([
+    // {
+    //   $match: { car: car },
+    // },
+    // {
+    //   $match: { income: { $lt: `$${income}` } },
+    // },
+    // {
+    //   $match: { gender: gender },
+    // },
+    // {
+    //   $match: { phone_price: { $gt: phone_price } },
+    // },
     {
-      $match: { car: car },
-    },
-    {
-      $match: { income: { $lt: `$${income}` } },
-    },
-    {
-      $match: { gender: gender },
-    },
-    {
-      $match: { phone_price: { $gt: phone_price } },
+      $match: { last_name: { $regex: lastName } },
     },
   ]);
   //.where("car")
