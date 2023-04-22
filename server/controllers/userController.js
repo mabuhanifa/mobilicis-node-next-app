@@ -2,9 +2,9 @@ const usersServices = require("../services/usersServices");
 
 async function usersController(req, res) {
   try {
-    const { car } = req.query;
-    const users = await usersServices(car);
-    res.send({ query: car, data: users });
+    const query = req.query;
+    const users = await usersServices(query);
+    res.send({ query: query, data: users });
   } catch (error) {
     res.status(400).json({
       status: "failed",
