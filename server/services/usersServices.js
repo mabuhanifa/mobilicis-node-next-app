@@ -6,7 +6,13 @@ async function usersServices({ car, income, gender, phone_price }) {
       $match: { car: car },
     },
     {
-      $match: { income: { $gt: `$${income}` } },
+      $match: { income: { $lt: `$${income}` } },
+    },
+    {
+      $match: { gender: gender },
+    },
+    {
+      $match: { phone_price: { $gt: phone_price } },
     },
   ]);
   //.where("car")
