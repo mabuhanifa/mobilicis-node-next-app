@@ -1,8 +1,9 @@
 const User = require("../models/userModel");
 
 async function getAllUsers(req, res) {
-  const users = await User.find({});
-  res.send(users);
+  const { id } = req.query;
+  const users = await User.find({ id: id });
+  res.send({ query: id, data: users });
 }
 
 module.exports = getAllUsers;
