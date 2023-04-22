@@ -4,7 +4,7 @@ const db = require("./db");
 const dotenv = require("dotenv");
 const app = express();
 const port = process.env.PORT || 5000;
-const userRouter = require("./routers/userRouter");
+const userRouter = require("./routes/userRouter");
 app.use(express.json());
 app.use(cors());
 dotenv.config();
