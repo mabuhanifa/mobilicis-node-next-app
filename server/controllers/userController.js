@@ -4,7 +4,7 @@ async function usersController(req, res) {
   try {
     const query = req.query;
     const users = await usersServices(query);
-    res.send({ query: query, data: users });
+    res.send({ query: query, length: users.length, data: users });
   } catch (error) {
     res.status(400).json({
       status: "failed",
