@@ -1,8 +1,8 @@
-const User = require("../models/userModel");
+const usersServices = require("../services/usersServices");
 
 async function usersController(req, res) {
   const { id } = req.query;
-  const users = await User.find({});
+  const users = await usersServices();
   res.send({ query: id, data: users });
 }
 
