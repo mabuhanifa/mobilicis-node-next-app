@@ -1,7 +1,14 @@
 const User = require("../models/userModel");
 
-async function usersServices({ car, income, gender, phone_price, last_name }) {
-    const lastName = new RegExp(last_name)
+async function usersServices({
+  car,
+  income,
+  gender,
+  phone_price,
+  last_name,
+  quote,
+}) {
+  const lastName = new RegExp(last_name);
   const users = await User.aggregate([
     // {
     //   $match: { car: car },
@@ -17,6 +24,12 @@ async function usersServices({ car, income, gender, phone_price, last_name }) {
     // },
     {
       $match: { last_name: { $regex: lastName } },
+    },
+    {
+      $match: {
+        quote: { $exists: true },
+        $expr: { $gt: [{ $strLenCP: "$quote" }, Number(quote)] },
+      },
     },
   ]);
   //.where("car")
