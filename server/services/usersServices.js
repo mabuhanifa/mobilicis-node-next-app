@@ -8,7 +8,7 @@ async function usersServices({
   last_name,
   quote,
 }) {
-  const lastName = new RegExp(last_name);
+  const lastName = new RegExp(last_name, "i");
   const users = await User.aggregate([
     // {
     //   $match: { car: car },
