@@ -2,13 +2,13 @@ const usersServices = require("../services/usersServices");
 
 async function usersController(req, res) {
   try {
-    const { id } = req.query;
-    const users = await usersServices();
-    res.send({ query: id, data: users });
+    const { car } = req.query;
+    const users = await usersServices(car);
+    res.send({ query: car, data: users });
   } catch (error) {
     res.status(400).json({
       status: "failed",
-      error: "Couldn't create the brand",
+      error: "Couldn't find users",
     });
   }
 }

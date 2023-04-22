@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 
-async function usersServices() {
-  const users = await User.find({});
+async function usersServices(car) {
+  const users = await User.find({ car: car });
   return users;
 }
 
