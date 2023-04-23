@@ -1,46 +1,64 @@
 const User = require("../models/userModel");
 
-async function usersServices({
-  car,
-  income,
-  gender,
-  phone_price,
-  last_name,
-  quote,
-}) {
-  const lastName = new RegExp(last_name, "i");
-  const users = await User.aggregate([
-    // {
-    //   $match: { car: car },
-    // },
-    // {
-    //   $match: { income: { $lt: `$${income}` } },
-    // },
-    // {
-    //   $match: { gender: gender },
-    // },
-    // {
-    //   $match: { phone_price: { $gt: phone_price } },
-    // },
-    {
-      $match: { last_name: { $regex: lastName } },
-    },
-    {
-      $match: {
-        quote: { $exists: true },
-        $expr: { $gt: [{ $strLenCP: "$quote" }, Number(quote)] },
+const queries = [
+  {},
+  {
+    $and: [{ income: { $lt: "$5" } }, { car: { $in: ["BMW", "Mercedes"] } }],
+  },
+  {
+    gender: "Male",
+    phone_price: { $gt: "10000" },
+  },
+  {
+    last_name: /^M/,
+    quote: { $regex: /^.{16,}$/ },
+    $expr: {
+      $regexMatch: {
+        input: "$email",
+        regex: "$last_name",
+        options: "i",
       },
     },
-  ]);
-  //.where("car")
-  // .equals(car)
-  // .where("income")
-  // .lt(`$${income}`)
-  // .where("gender")
-  // .equals(gender)
-  // .where("phone_price")
-  // .gt(phone_price);
-  return users;
+  },
+  {
+    $and: [
+      {
+        car: {
+          $in: ["BMW", "Mercedes", "Audi"],
+        },
+      },
+      {
+        email: {
+          $not: /\d/,
+        },
+      },
+    ],
+  },
+  [
+    {
+      $group: {
+        _id: "$city",
+        count: { $sum: 1 },
+        average_income: {
+          $avg: { $toDouble: { $substr: ["$income", 1, -1] } },
+        },
+      },
+    },
+    {
+      $sort: {
+        count: -1,
+      },
+    },
+    {
+      $limit: 10,
+    },
+  ],
+];
+
+async function usersServices(id) {
+  if (id === 5) {
+    return await User.aggregate(queries[5]);
+  } else return await User.aggregate([{ $match: queries[id] }]);
 }
 
 module.exports = usersServices;
