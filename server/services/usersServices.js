@@ -7,11 +7,13 @@ const queries = [
   },
   {
     gender: "Male",
-    phone_price: { $gt: "10000" },
+    $expr: {
+      $gt: [{ $toInt: "$phone_price" }, 10000],
+    },
   },
   {
     last_name: /^M/,
-    quote: { $regex: /^.{16,}$/ },
+    $expr: { $gt: [{ $strLenCP: "$quote" }, 15] },
     $expr: {
       $regexMatch: {
         input: "$email",
