@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Table from "./Table";
 
 const options = [
   { value: 1, label: "Query 1" },
@@ -9,29 +10,44 @@ const options = [
 ];
 
 const Select = () => {
-  const [selectedOption, setSelectedOption] = useState({
-    value: 1,
-    label: "Query 1",
-  });
-
+  const [selectedOption, setSelectedOption] = useState(1);
+  console.log(selectedOption);
+  const [data, setData] = useState([]);
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
+    console.log(event.target);
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `http://localhost:5000/api/users/${selectedOption}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      setData(data.data);
+    };
+    fetchData();
+  }, [selectedOption]);
 
   return (
-    <select
-      value={selectedOption ? selectedOption.value : ""}
-      onChange={handleChange}
-    >
-      <option value=""> Select an option </option>
-      {options
-        .map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))
-        .slice(0, 5)}
-    </select>
+    <div>
+      <div>
+        <select
+          value={selectedOption ? selectedOption : ""}
+          onChange={handleChange}
+        >
+          <option value=""> Select an option </option>
+          {options
+            .map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))
+            .slice(0, 5)}
+        </select>
+      </div>
+      <div>
+        <Table data={data} />
+      </div>
+    </div>
   );
 };
 
