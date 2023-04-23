@@ -4,7 +4,7 @@ const Table = ({ data }) => {
       <div className="flex justify-center">
         <table>
           <thead>
-            <tr>
+            <tr className="border-b bg-indigo-700 text-white">
               <th>Country</th>
               <th>Total Count</th>
               <th>Average Income</th>
@@ -13,10 +13,10 @@ const Table = ({ data }) => {
           <tbody>
             {data &&
               data.map((d) => (
-                <tr>
+                <tr className="border">
                   <th>{d._id}</th>
-                  <th>{d.count}</th>
-                  <th>{d.average_income.toFixed(2)}</th>
+                  <th className="text-center">{d.count}</th>
+                  <th className="text-center">{d.average_income.toFixed(2)}</th>
                 </tr>
               ))}
           </tbody>
@@ -26,9 +26,9 @@ const Table = ({ data }) => {
   }
   return (
     <div className="flex justify-center">
-      <table>
+      <table className="t-b">
         <thead>
-          <tr>
+          <tr className="border-b bg-indigo-700 text-white">
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -44,7 +44,7 @@ const Table = ({ data }) => {
         <tbody>
           {data &&
             data.map((item) => (
-              <tr key={item._id}>
+              <tr key={item._id} className="border">
                 <td>{item.id}</td>
                 <td>{item.first_name}</td>
                 <td>{item.last_name}</td>
