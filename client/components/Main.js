@@ -1,6 +1,9 @@
+import Select from "./Select";
 
 export default function Main() {
   return (
-    <div>Main</div>
+    <div>
+      <Select/>
+    </div>
   )
 }
