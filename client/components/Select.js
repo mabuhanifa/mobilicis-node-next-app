@@ -31,10 +31,9 @@ const Select = () => {
     <div>
       <div>
         <select
-          value={selectedOption ? selectedOption : ""}
+          value={selectedOption ? selectedOption : "Select an option"}
           onChange={handleChange}
         >
-          <option value=""> Select an option </option>
           {options
             .map((option) => (
               <option key={option.value} value={option.value}>

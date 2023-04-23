@@ -4,6 +4,7 @@ const Table = ({ data }) => {
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
@@ -13,13 +14,13 @@ const Table = ({ data }) => {
           <th>Car</th>
           <th>Quote</th>
           <th>Phone Price</th>
-          <th>ID</th>
         </tr>
       </thead>
       <tbody>
         {data &&
           data.map((item) => (
             <tr key={item._id}>
+              <td>{item.id}</td>
               <td>{item.first_name}</td>
               <td>{item.last_name}</td>
               <td>{item.email}</td>
@@ -29,7 +30,6 @@ const Table = ({ data }) => {
               <td>{item.car}</td>
               <td>{item.quote}</td>
               <td>{item.phone_price}</td>
-              <td>{item.id}</td>
             </tr>
           ))}
       </tbody>
