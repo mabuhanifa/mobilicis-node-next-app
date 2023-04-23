@@ -46,6 +46,9 @@ const Select = () => {
         </select>
       </div>
       <div>
+        <h4 className="text-center font-bold my-5">Total {data.length} users found</h4>
+      </div>
+      <div>
         <Table data={data} />
       </div>
     </div>

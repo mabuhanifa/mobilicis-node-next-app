@@ -1,4 +1,11 @@
 const Table = ({ data }) => {
+  if (data.length == 0) {
+    return (
+      <div>
+        <h4 className="text-center font-bold my-5">Loading....</h4>
+      </div>
+    );
+  }
   if (data.length <= 11) {
     return (
       <div className="flex justify-center">
