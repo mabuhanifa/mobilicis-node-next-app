@@ -17,6 +17,7 @@ const Select = () => {
     setSelectedOption(event.target.value);
     console.log(event.target);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       const url = `http://localhost:5000/api/users/${selectedOption}`;
@@ -29,10 +30,11 @@ const Select = () => {
 
   return (
     <div>
-      <div>
+      <div className="flex justify-center my-10">
         <select
           value={selectedOption ? selectedOption : "Select an option"}
           onChange={handleChange}
+          className="px-20 py-2 border border-gray-400 rounded"
         >
           {options
             .map((option) => (
