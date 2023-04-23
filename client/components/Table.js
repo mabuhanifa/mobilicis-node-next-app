@@ -16,7 +16,7 @@ const Table = ({ data }) => {
                 <tr>
                   <th>{d._id}</th>
                   <th>{d.count}</th>
-                  <th>{d.average_income}</th>
+                  <th>{d.average_income.toFixed(2)}</th>
                 </tr>
               ))}
           </tbody>
@@ -25,7 +25,7 @@ const Table = ({ data }) => {
     );
   }
   return (
-    <div>
+    <div className="flex justify-center">
       <table>
         <thead>
           <tr>
