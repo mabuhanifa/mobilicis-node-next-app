@@ -20,7 +20,7 @@ const Select = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `http://localhost:5000/api/users/${selectedOption}`;
+      const url = `https://olive-tortoise-kit.cyclic.app/api/users/${selectedOption}`;
       const res = await fetch(url);
       const data = await res.json();
       setData(data.data);
@@ -45,9 +45,13 @@ const Select = () => {
             .slice(0, 5)}
         </select>
       </div>
-      <div>
-        <h4 className="text-center font-bold my-5">Total {data.length} users found</h4>
-      </div>
+      {selectedOption < 5 && (
+        <div>
+          <h4 className="text-center font-bold my-5">
+            Total {data.length} users found
+          </h4>
+        </div>
+      )}
       <div>
         <Table data={data} />
       </div>
