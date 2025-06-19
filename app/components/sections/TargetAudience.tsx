@@ -1,37 +1,42 @@
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Briefcase, Code, Users, Globe } from "lucide-react";
+import { Briefcase, Code, Globe, Users } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const audienceData = [
   {
     icon: <Users className="w-8 h-8 text-primary mb-2" />,
     title: "Anyone Building an Online Presence",
-    description: "Whether you're an individual launching a portfolio or a visionary with a new online venture, we help bring your ideas to life.",
+    description:
+      "Whether you're an individual launching a portfolio or a visionary with a new online venture, we help bring your ideas to life.",
   },
   {
     icon: <Briefcase className="w-8 h-8 text-primary mb-2" />,
     title: "Small & Medium Businesses",
-    description: "Establish or enhance your digital presence with websites and applications that drive growth and customer engagement.",
+    description:
+      "Establish or enhance your digital presence with websites and applications that drive growth and customer engagement.",
   },
   {
     icon: <Code className="w-8 h-8 text-primary mb-2" />,
     title: "Startups",
-    description: "Build MVPs or full-scale digital products that help you validate ideas, attract investors, and scale rapidly.",
+    description:
+      "Build MVPs or full-scale digital products that help you validate ideas, attract investors, and scale rapidly.",
   },
   {
     icon: <Briefcase className="w-8 h-8 text-primary mb-2" />,
     title: "Enterprises",
-    description: "Modernize legacy systems or develop new digital solutions that improve efficiency and drive innovation.",
+    description:
+      "Modernize legacy systems or develop new digital solutions that improve efficiency and drive innovation.",
   },
   {
     icon: <Briefcase className="w-8 h-8 text-primary mb-2" />,
     title: "Entrepreneurs",
-    description: "Launch new ideas with digital products that stand out in the market and resonate with your target audience.",
+    description:
+      "Launch new ideas with digital products that stand out in the market and resonate with your target audience.",
   },
   {
     icon: <Globe className="w-8 h-8 text-primary mb-2" />,
     title: "E-commerce Businesses",
-    description: "Create compelling online shopping experiences that convert visitors into customers and drive sales.",
+    description:
+      "Create compelling online shopping experiences that convert visitors into customers and drive sales.",
   },
 ];
 

@@ -1,19 +1,19 @@
-
+import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-import { Button } from "@/components/ui/button";
+import { pricingPackages } from "./sections/Pricing";
+import { Button } from "./ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogClose,
-} from "@/components/ui/dialog";
+} from "./ui/dialog";
 import {
   Form,
   FormControl,
@@ -21,18 +21,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { pricingPackages } from "@/components/sections/Pricing";
-import { useToast } from "@/components/ui/use-toast";
+} from "./ui/form";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { useToast } from "./ui/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email." }),
   phone: z.string().optional(),
   budget: z.string().min(1, { message: "Please select a budget range." }),
-  details: z.string().min(10, { message: "Please provide some details about your project." }),
+  details: z
+    .string()
+    .min(10, { message: "Please provide some details about your project." }),
   packageName: z.string(),
 });
 
@@ -44,9 +45,18 @@ interface ServiceInquiryModalProps {
   selectedPackage: (typeof pricingPackages)[0] | null;
 }
 
-const budgetRanges = ["$100 - $500", "$500 - $1,000", "$1,000 - $2,000", "$2,000+"];
+const budgetRanges = [
+  "$100 - $500",
+  "$500 - $1,000",
+  "$1,000 - $2,000",
+  "$2,000+",
+];
 
-export const ServiceInquiryModal = ({ isOpen, onOpenChange, selectedPackage }: ServiceInquiryModalProps) => {
+export const ServiceInquiryModal = ({
+  isOpen,
+  onOpenChange,
+  selectedPackage,
+}: ServiceInquiryModalProps) => {
   const { toast } = useToast();
   const form = useForm<ServiceInquiryFormValues>({
     resolver: zodResolver(formSchema),
@@ -178,7 +188,11 @@ export const ServiceInquiryModal = ({ isOpen, onOpenChange, selectedPackage }: S
                 </FormItem>
               )}
             />
-            <FormField control={form.control} name="packageName" render={({ field }) => <Input type="hidden" {...field} />} />
+            <FormField
+              control={form.control}
+              name="packageName"
+              render={({ field }) => <Input type="hidden" {...field} />}
+            />
             <DialogFooter>
               <DialogClose asChild>
                 <Button type="button" variant="outline">

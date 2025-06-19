@@ -1,6 +1,3 @@
-
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import {
   Anchor,
   Cloud,
@@ -25,6 +22,8 @@ import {
   Wind,
   Zap,
 } from "lucide-react";
+import { Badge } from "../ui/badge";
+import { Card } from "../ui/card";
 
 const techStack = [
   {
@@ -55,7 +54,7 @@ const techStack = [
   {
     category: "Tools",
     icon: <Code className="w-10 h-10 text-primary" />,
-    technologies: ["Git", "VS Code", "Figma", "Postman", "Jest"]
+    technologies: ["Git", "VS Code", "Figma", "Postman", "Jest"],
   },
 ];
 
