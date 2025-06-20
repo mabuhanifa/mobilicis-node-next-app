@@ -6,14 +6,14 @@ import Header from "./components/layout/Header";
 import About from "./components/sections/About";
 import Contact from "./components/sections/Contact";
 import Hero from "./components/sections/Hero";
-import Pricing from "./components/sections/Pricing";
+import Pricing, { pricingPackages } from "./components/sections/Pricing";
 import Services from "./components/sections/Services";
 import TargetAudience from "./components/sections/TargetAudience";
 import TechStack from "./components/sections/TechStack";
 import WhyUs from "./components/sections/WhyUs";
 import { ServiceInquiryModal } from "./components/ServiceInquiryModal";
 import { Toaster } from "./components/ui/toaster";
-
+type Package = (typeof pricingPackages)[0];
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);

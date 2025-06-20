@@ -1,4 +1,5 @@
 import { Zap } from "lucide-react";
+import Link from "next/link";
 import { ThemeToggle } from "../ThemeToggle";
 
 const Footer = () => {
@@ -6,10 +7,10 @@ const Footer = () => {
     <footer className="container py-12">
       <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
         <div className="lg:col-span-2">
-          <a href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <Zap className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold">AppZealand</span>
-          </a>
+          </Link>
           <p className="text-muted-foreground mt-4">
             Transforming ideas into impactful digital realities. We specialize
             in creating bespoke websites, web applications, and mobile

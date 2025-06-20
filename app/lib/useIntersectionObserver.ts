@@ -1,44 +1,40 @@
+// app/lib/useIntersectionObserver.ts
+import { RefObject, useEffect, useState } from "react";
 
-import { useState, useEffect, RefObject } from 'react';
-
-interface IntersectionObserverOptions {
-  threshold?: number | number[];
-  root?: Element | null;
-  rootMargin?: string;
-}
-
-const useIntersectionObserver = (
-  ref: RefObject<Element>,
-  options: IntersectionObserverOptions = { threshold: 0.1 }
-): boolean => {
-  const [isIntersecting, setIntersecting] = useState(false);
+/**
+ * Custom hook to observe an element's intersection with the viewport.
+ * @param ref A React RefObject pointing to the DOM element to observe.
+ * @param options IntersectionObserverInit options (e.g., threshold, root, rootMargin).
+ * @returns A boolean indicating if the observed element is currently intersecting.
+ */
+function useIntersectionObserver<T extends HTMLElement>( // Generic type T extends HTMLElement
+  ref: RefObject<T | null>, // Crucial: RefObject can hold T or null
+  options: IntersectionObserverInit = {} // Default empty options if none provided
+): boolean {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIntersecting(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        ...options,
-      }
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, options);
 
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+    const currentElement = ref.current; // Get the current element from the ref
+
+    if (currentElement) {
+      // Only observe if the element exists
+      observer.observe(currentElement);
     }
 
+    // Cleanup function
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
+      if (currentElement) {
+        observer.unobserve(currentElement); // Stop observing when component unmounts or dependencies change
       }
+      observer.disconnect(); // Disconnect observer
     };
-  }, [ref, options]);
+  }, [ref, options]); // Dependencies array for useEffect
 
-  return isIntersecting;
-};
+  return isVisible;
+}
 
 export default useIntersectionObserver;

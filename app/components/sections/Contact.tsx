@@ -50,9 +50,9 @@ const Contact = () => {
         Get In <span className="text-primary">Touch</span>
       </h2>
       <p className="md:w-3/4 mx-auto mt-4 mb-12 text-xl text-muted-foreground text-center">
-        Have a project in mind or want to learn more about our services? We'd
-        love to hear from you. Fill out the form and our team will get back to
-        you as soon as possible.
+        Have a project in mind or want to learn more about our services?
+        We&apos;d love to hear from you. Fill out the form and our team will get
+        back to you as soon as possible.
       </p>
 
       <Card className="p-8 shadow-sm">
@@ -81,7 +81,7 @@ const Contact = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4">Send Us a Message</h3>
             <p className="text-muted-foreground mb-4">
-              Fill out the form below and we'll get back to you shortly.
+              Fill out the form below and we&apos;ll get back to you shortly.
             </p>
             <Form {...form}>
               <form

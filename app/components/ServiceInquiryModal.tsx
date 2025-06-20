@@ -97,7 +97,7 @@ export const ServiceInquiryModal = ({
         <DialogHeader>
           <DialogTitle>Service Inquiry</DialogTitle>
           <DialogDescription>
-            Fill out the form below and we'll get back to you shortly.
+            Fill out the form below and we&apos;ll get back to you shortly.
           </DialogDescription>
         </DialogHeader>
         {selectedPackage && (

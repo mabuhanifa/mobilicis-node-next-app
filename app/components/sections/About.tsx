@@ -53,8 +53,9 @@ const About = () => {
           <h3 className="text-2xl font-bold mt-8">Why Choose Us?</h3>
           <p className="text-xl text-muted-foreground mt-4">
             At AppZealand, we put your goals first. We believe that a limited
-            budget shouldn't limit your potential. Our mission is to provide
-            high-quality, innovative digital solutions at an affordable price.
+            budget shouldn&apos;t limit your potential. Our mission is to
+            provide high-quality, innovative digital solutions at an affordable
+            price.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 gap-6">
