@@ -7,9 +7,9 @@ import { RefObject, useEffect, useState } from "react";
  * @param options IntersectionObserverInit options (e.g., threshold, root, rootMargin).
  * @returns A boolean indicating if the observed element is currently intersecting.
  */
-function useIntersectionObserver<T extends HTMLElement>( // Generic type T extends HTMLElement
-  ref: RefObject<T | null>, // Crucial: RefObject can hold T or null
-  options: IntersectionObserverInit = {} // Default empty options if none provided
+function useIntersectionObserver<T extends HTMLElement>(
+  ref: RefObject<T | null>,
+  options: IntersectionObserverInit = {}
 ): boolean {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -18,22 +18,19 @@ function useIntersectionObserver<T extends HTMLElement>( // Generic type T exten
       setIsVisible(entry.isIntersecting);
     }, options);
 
-    const currentElement = ref.current; // Get the current element from the ref
+    const currentElement = ref.current;
 
     if (currentElement) {
-      // Only observe if the element exists
       observer.observe(currentElement);
     }
 
-    // Cleanup function
     return () => {
       if (currentElement) {
-        observer.unobserve(currentElement); // Stop observing when component unmounts or dependencies change
+        observer.unobserve(currentElement);
       }
-      observer.disconnect(); // Disconnect observer
+      observer.disconnect();
     };
-  }, [ref, options]); // Dependencies array for useEffect
-
+  }, [ref, options]);
   return isVisible;
 }
 

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 const audienceData = [
   {
     icon: <Users className="w-8 h-8 text-primary mb-2" />,
-    title: "Anyone Building an Online Presence",
+    title: "Someone Building an Online Presence",
     description:
       "Whether you're an individual launching a portfolio or a visionary with a new online venture, we help bring your ideas to life.",
   },

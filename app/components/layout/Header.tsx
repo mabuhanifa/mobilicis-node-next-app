@@ -31,7 +31,7 @@ const Header = ({ onGetQuoteClick }: HeaderProps) => {
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
+                className="transition-colors hover:font-bold text-foreground"
               >
                 {link.title}
               </a>
